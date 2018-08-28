@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class FetchColorService {
@@ -16,14 +17,18 @@ export class FetchColorService {
     constructor(private http: Http) {}
 
     getColorListByKeyword(term: string): Observable<any[]> {
-      return this.http.get('./colors.json')
-               .map(this.extractData)
-               .catch(this.handleError);
+
+      const a = this.http.get('../assets/colors.json')
+      .map(this.extractData)
+      .filter(o => !o.name && o.name.indexOf(term) >= 0)
+      .catch(this.handleError);
+
+      return a;
     }
 
     private extractData(res: Response) {
         const body = res.json();
-        return body.results || {};
+        return body.Color || {};
     }
 
     private handleError(error: Response |any) {
