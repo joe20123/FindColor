@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-searchcolor',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchcolorComponent implements OnInit {
 
+  colors: Observable<any[]>;
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

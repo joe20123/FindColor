@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SearchcolorComponent } from './searchcolor/searchcolor.component';
 import { SearchColorModule } from './searchcolor/searchcolor.module';
+import { FetchColorService } from './Services/fetchcolor.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { SearchColorModule } from './searchcolor/searchcolor.module';
     BrowserModule,
     SearchColorModule
   ],
-  providers: [],
+  providers: [ FetchColorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
