@@ -8,6 +8,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
+import { ColorSchema } from '../model/color';
 
 @Component({
   selector: 'app-searchcolor',
@@ -16,7 +17,7 @@ import 'rxjs/add/observable/of';
 })
 export class SearchcolorComponent implements OnInit {
 
-  colorlist: Observable<any[]>;
+  colorlist: Observable<ColorSchema[]>;
   searchterm = new Subject<any>();
 
   constructor(private colorservice: FetchColorService,

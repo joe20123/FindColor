@@ -4,6 +4,10 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/concatMap';
+import 'rxjs/add/observable/from';
+import { ColorSchema } from '../model/color';
+
 
 @Injectable()
 export class FetchColorService {
@@ -20,7 +24,12 @@ export class FetchColorService {
 
       const a = this.http.get('../assets/colors.json')
       .map(this.extractData)
-      .filter(o => !o.name && o.name.indexOf(term) >= 0)
+      // .concatMap(arr => Observable.from(arr))
+      .filter(o => {
+          const na = o.name;
+          const b = na.indexOf(term);
+          return na && b > -1;
+        })
       .catch(this.handleError);
 
       return a;
@@ -28,7 +37,7 @@ export class FetchColorService {
 
     private extractData(res: Response) {
         const body = res.json();
-        return body.Color || {};
+        return body.Color as ColorSchema[];
     }
 
     private handleError(error: Response |any) {
