@@ -1,4 +1,5 @@
-[
+{
+ "Color": [
     {
       "name": "antiquewhite",
       "hexcode": "#FAEBD7",
@@ -695,3 +696,4 @@
       "rgbcode": "154, 205, 50"
     }
    ]
+}

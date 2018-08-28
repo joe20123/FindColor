@@ -16,7 +16,7 @@ export class FetchColorService {
     constructor(private http: Http) {}
 
     getColorListByKeyword(term: string): Observable<any[]> {
-      return this.http.get('../assets/colors.json')
+      return this.http.get('./colors.json')
                .map(this.extractData)
                .catch(this.handleError);
     }

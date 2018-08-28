@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
+import { FetchColorService } from '../Services/fetchcolor.service';
+
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-searchcolor',
@@ -8,12 +16,29 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SearchcolorComponent implements OnInit {
 
-  colors: Observable<any[]>;
+  colorlist: Observable<any[]>;
+  searchterm = new Subject<any>();
 
-  constructor() { }
+  constructor(private colorservice: FetchColorService,
+              private router: Router) {
+
+              }
 
   ngOnInit() {
+      this.colorlist = this.searchterm
+                      .debounceTime(300)
+                      .distinctUntilChanged()
+                      .switchMap(term => term
+                          ? this.colorservice.getColorListByKeyword(term)
+                          : Observable.of<any[]>([]))
+                        .catch(error => {
+                          console.log(error);
+                          return Observable.of<any[]>([]);
+                        });
+  }
 
+  performSearchOnShowName(term: string) {
+    this.searchterm.next(term);
   }
 
 }
