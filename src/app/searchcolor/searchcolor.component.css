@@ -1,7 +1,7 @@
 .wrapper {
     background-color: rgba(31, 22, 15, 0.842);
     height: 100vh;
-    
+    overflow: auto;
     /* background-image: url(../../assets/images/alex.png);
     background-repeat:no-repeat;
     background-size:cover;
