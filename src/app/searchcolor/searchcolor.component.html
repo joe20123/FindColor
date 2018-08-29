@@ -11,16 +11,19 @@
         <br>
         <br>
       
-        <div class="color-container">
-          <div *ngFor="let g of colorlist | async" >
-                
-                  <div class="card-block" [ngStyle]="{'background-color': g.hexcolor}">
-                      <h4 class="card-title">{{g.name}}</h4>
-                  </div>
-          
-          </div>
-        </div>
-
       </div>
   </div>
+  <br>
+  <br>
+
+  <div class="color-container">
+      <div *ngFor="let g of colorlist | async" >
+            
+        
+        <p class="textblock">{{g.name}}</p>
+        <div class="cardblock" [style.background-color] = "g.hexcode">
+        </div>
+      
+      </div>
+    </div>  
 </div>
