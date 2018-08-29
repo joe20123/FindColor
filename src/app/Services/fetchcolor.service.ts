@@ -5,7 +5,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/concatMap';
+import 'rxjs/add/operator/toArray';
 import 'rxjs/add/observable/from';
+
 import { ColorSchema } from '../model/color';
 
 
@@ -22,22 +24,21 @@ export class FetchColorService {
 
     getColorListByKeyword(term: string): Observable<any[]> {
 
-      const a = this.http.get('../assets/colors.json')
-      .map(this.extractData)
-      // .concatMap(arr => Observable.from(arr))
-      .filter(o => {
-          const na = o.name;
-          const b = na.indexOf(term);
-          return na && b > -1;
-        })
-      .catch(this.handleError);
+    // Rx.Observable.prototype.toArray():
+    //   An observable sequence containing a single element with a list
+    //   containing all the elements of the source sequence.
 
-      return a;
+      const a = this.http.get('../assets/colors.json')
+      .map((res: any) => res.json().Color as ColorSchema[])
+      .concatMap(arr => Observable.from(arr)) // flattern array to elements
+      .filter(p => p.name.indexOf(term) > -1)
+      .catch(this.handleError);
+      return a.toArray(); // resemble elements into one array
     }
 
     private extractData(res: Response) {
         const body = res.json();
-        return body.Color as ColorSchema[];
+        return body.Color || {};
     }
 
     private handleError(error: Response |any) {

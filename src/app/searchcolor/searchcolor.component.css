@@ -1,0 +1,38 @@
+.wrapper {
+    background-color: rgba(247, 246, 245, 0);
+    height: 100vh;
+    
+    /* background-image: url(../../assets/images/alex.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center; */
+    
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 800px 1fr;
+    grid-template-rows:150px 100px auto;
+}
+
+.frame-area {
+    grid-column: 2;
+    grid-row: 2;
+
+    padding: 20px;
+    border: 1px solid rgb(114, 114, 130);
+    border-radius: 5px;
+    background-color: rgb(207, 216, 124);
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.color-container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.card-block {
+    border: 1px solid, rgb(114, 114, 130);
+    height: 10em;
+}

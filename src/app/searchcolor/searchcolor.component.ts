@@ -17,7 +17,7 @@ import { ColorSchema } from '../model/color';
 })
 export class SearchcolorComponent implements OnInit {
 
-  colorlist: Observable<ColorSchema[]>;
+  colorlist: Observable<any[]>;
   searchterm = new Subject<any>();
 
   constructor(private colorservice: FetchColorService,
