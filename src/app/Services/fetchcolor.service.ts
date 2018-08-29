@@ -31,7 +31,7 @@ export class FetchColorService {
       const a = this.http.get('../assets/colors.json')
       .map((res: any) => res.json().Color as ColorSchema[])
       .concatMap(arr => Observable.from(arr)) // flattern array to elements
-      .filter(p => p.name.indexOf(term) > -1)
+      .filter(p => p['name'].indexOf(term) > -1)
       .catch(this.handleError);
       return a.toArray(); // resemble elements into one array
     }
