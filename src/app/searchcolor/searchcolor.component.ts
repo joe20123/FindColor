@@ -19,6 +19,7 @@ export class SearchcolorComponent implements OnInit {
 
   colorlist: Observable<any[]>;
   searchterm = new Subject<any>();
+  hoveredOver = false;
 
   constructor(private colorservice: FetchColorService,
               private router: Router) {
@@ -40,6 +41,13 @@ export class SearchcolorComponent implements OnInit {
 
   performSearchOnShowName(term: string) {
     this.searchterm.next(term);
+  }
+
+  mouseHovering() {
+    this.hoveredOver = true;
+  }
+  mouseLeaving() {
+    this.hoveredOver = false;
   }
 
 }

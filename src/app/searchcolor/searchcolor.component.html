@@ -17,11 +17,14 @@
   <br>
 
   <div class="color-container">
-      <div *ngFor="let g of colorlist | async" >
-            
+      <div *ngFor="let g of colorlist | async; let i = index" >
         
         <p class="textblock">{{g.name}}</p>
-        <div class="cardblock" [style.background-color] = "g.hexcode">
+        <div class="cardblock" [style.background-color] = "g.hexcode" 
+                (mouseenter)="g.visible = true" 
+                (mouseleave)="g.visible = false"
+                >
+            <p class="hexcode" *ngIf="g.visible" >{{g.hexcode}}</p>
         </div>
       
       </div>
