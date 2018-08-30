@@ -23,8 +23,10 @@
         <div class="cardblock" [style.background-color] = "g.hexcode" 
                 (mouseenter)="g.visible = true" 
                 (mouseleave)="g.visible = false"
+                (click)="copyToClipboard(hexcodelabel)"
+                title = "click to copy" 
                 >
-            <p class="hexcode" *ngIf="g.visible" >{{g.hexcode}}</p>
+            <label class="hexcode" *ngIf="g.visible" #hexcodelabel>{{g.hexcode}}</label>
         </div>
       
       </div>

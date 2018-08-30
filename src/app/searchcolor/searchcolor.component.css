@@ -37,6 +37,7 @@
 .cardblock {
     border: 1px solid rgb(114, 114, 130);
     height: 10em;
+    position: relative;
 }
 .textblock {
     color: rgb(189, 212, 233);
