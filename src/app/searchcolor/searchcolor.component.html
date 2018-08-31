@@ -24,8 +24,9 @@
                 (mouseenter)="g.visible = true" 
                 (mouseleave)="g.visible = false"
                 title = "click to copy" 
+                ngxClipboard [cbContent]="g.hexcode"
                 >
-            <label type="text" *ngIf="g.visible" #hexcodelabel ngxClipboard [cbContent]="g.hexcode">{{g.hexcode}}</label>
+            <label type="text" *ngIf="g.visible" >{{g.hexcode}}</label>
         </div>
       
       </div>
