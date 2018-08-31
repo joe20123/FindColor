@@ -15,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     SearchColorModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+
   ],
   providers: [ FetchColorService ],
   bootstrap: [AppComponent]

@@ -50,8 +50,4 @@ export class SearchcolorComponent implements OnInit {
     this.hoveredOver = false;
   }
 
-  copyToClipboard(element) {
-    element.select();
-    document.execCommand('copy');
-  }
 }
